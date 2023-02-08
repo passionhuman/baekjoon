@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 n = int(input())
 prime_list = [True] * (n + 1)
 m = int(n ** 0.5)
