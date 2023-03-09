@@ -1,17 +1,18 @@
 k, n = map(int, input().split())
-arr = []
+stack = []
+ans = []
 for i in range(k):
-    arr.append(int(input()))
-start = 1
-end = max(arr)
-
-while (start <= end):
-    mid = (start + end) // 2
-    cnt = 0
-    for i in range(k):
-        cnt += arr[i] // mid
+    temp = int(input())
+    stack.append(temp)
+stack.sort()
+s = 1
+e = stack[-1]
+cnt = 0
+while True:
+    mid = (s + e) // 2
+    for i in range(len(stack)):
+        cnt += stack[i] // mid
     if cnt >= n:
-        start = mid + 1
-    else:
-        end = mid - 1
-print(end)
+        ans.append(mid)
+    cnt = 0
+    if cnt < n:
