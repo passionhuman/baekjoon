@@ -8,11 +8,18 @@ stack.sort()
 s = 1
 e = stack[-1]
 cnt = 0
-while True:
+
+while s <= e:
     mid = (s + e) // 2
     for i in range(len(stack)):
         cnt += stack[i] // mid
     if cnt >= n:
         ans.append(mid)
-    cnt = 0
+
     if cnt < n:
+        e = mid - 1
+
+    elif cnt >= n:
+        s = mid + 1
+    cnt = 0
+print(max(ans))
