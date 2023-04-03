@@ -1,17 +1,23 @@
-x, y = map(int, input().split())
-ans = int(y * 100 / x) # 게임승률
-s = 1 # 이분탐색 범위 제일 낮은 수
-e = x # 이분탐색 범위 제일 높은 수
-res = [] # 정답 담을 배열
-while s <= e: # 이분 탐색 시작
-    mid = (s + e) // 2 # mid 값으로 게임 몇 판 더해줄지 정하기
-    temp = int((y + mid) * 100 / (x + mid))
-    if ans != temp: # 게임승률이 달라졌다는거니
-        e = mid -1 # mid 크기를 줄여보기
-        res.append(mid)
-    else:
-        s = mid + 1 # 안달라졌으면 mid 값 키우기
-if res:
-    print(s)
+import sys
+from collections import deque
+def bfs(n):
+    q = deque()
+    q.append(n)
+    while q:
+        c = q.popleft()
+        if c == K:
+            return v[c]
+        for d in (c-1, c+1, c*2):
+            if 0 <= d < 100001 and v[d] == 0:
+                if d == c * 2 and d != 0:
+                    q.appendleft(d)
+                    v[d] = v[c]
+                else:
+                    q.append(d)
+                    v[d] = v[c] + 1
+N, K = map(int, sys.stdin.readline().split())
+v = [0] * 100001
+if N == K:
+    print(0)
 else:
-    print(-1)
+    print(bfs(N))
