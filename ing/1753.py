@@ -1,5 +1,4 @@
 import sys
-
 def dijkstra(s, V):
     U = [0] * (V + 1)
     U[s] = 1
