@@ -10,7 +10,6 @@ for d, w in h:
     i = d
     while i > 0 and v[i] == 1:
         i -= 1
-
     if i == 0:
         continue
     else:
