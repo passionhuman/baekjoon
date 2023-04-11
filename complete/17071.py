@@ -13,10 +13,9 @@ if N != K:
         for _ in range(size):
             cur = q.popleft()
             for next in (cur - 1, cur + 1, cur * 2):
-                if -1 < next < 500001:
-                    if move[next][time % 2] < 0:
-                        move[next][time % 2] = 1
-                        q.append(next)
+                if -1 < next < 500001 and move[next][time % 2] == -1:
+                    move[next][time % 2] = 1
+                    q.append(next)
         K += time
         if K < 500001:
             if move[K][time % 2] > -1:
