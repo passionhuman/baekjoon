@@ -1,27 +1,33 @@
-import sys
 from collections import deque
-def bfs(n,temp):
-    global K
-    cnt = 0
-    q = deque()
-    q.append(n)
+N, K = map(int, input().split())
 
-    while q:
+time = 1
+move = [[-1, -1] for _ in range(500001)]  # 방문 시, 짝수, 홀수 최소 시간 저장
+move[N][0] = 0
+q = deque([N])
+check = False
+
+if N != K:
+    while K < 500001:
         size = len(q)
         for _ in range(size):
-            c = q.popleft()
-            if K > 500000:
-                return -1
-            if c == K:
-                print(K)
-                return cnt
-            for d in (c-1, c+1, c*2):
-                if 0 <= d < 500001:
-                    q.append(d)
-        cnt += 1
-        K += temp
-        temp += 1
+            cur = q.popleft()
+            for next in (cur - 1, cur + 1, cur * 2):
+                if -1 < next < 500001:
+                    if move[next][time % 2] < 0:
+                        move[next][time % 2] = 1
+                        q.append(next)
+        K += time
+        if K < 500001:
+            if move[K][time % 2] > -1:
+                check = True
+                break
+            time += 1
+else:
+    time = 0
+    check = True
 
-N, K = map(int, sys.stdin.readline().split())
-v[]
-print(bfs(N,1))
+if check:
+    print(time)
+else:
+    print(-1)
