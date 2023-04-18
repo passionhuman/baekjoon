@@ -26,4 +26,3 @@ def combi(cnt,ans):
 combi(0,[])
 print(min(result))
 
-2 3 4
