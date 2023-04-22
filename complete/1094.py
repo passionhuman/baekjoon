@@ -5,3 +5,4 @@ for i in range(7):
         ans += 1
 print(ans)
 
+
